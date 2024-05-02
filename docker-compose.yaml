@@ -1,0 +1,12 @@
+version: '3'
+services:
+  baas-api:
+    build:
+      context: src/api
+      dockerfile: Dockerfile
+    image: localhost:32000/baas-api:latest
+  website:
+    build:
+      context: src/website
+      dockerfile: Dockerfile
+    image: localhost:32000/website:latest
