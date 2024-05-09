@@ -5,6 +5,7 @@ from flask_mysqldb import MySQL
 from flask_session import Session
 import MySQLdb.cursors
 import password_gen
+import markdown
 app = Flask(__name__)
 
 # Get the connection details from the environment variables
@@ -92,15 +93,16 @@ def delete_post():
     cur.close()
     #check if post exists
     if post is None:
-        return { success: False, error: "Post does not exist" }
+        return { "success": False, error: "Post does not exist" }
     #check if user is the author of the post
     if post[0] != session['user_id']:
-        return { success: False, error: "You are not the author of this post" }
+        return { "success": False, error: "You are not the author of this post" }
     cur = mysql.connection.cursor()
     cur.execute("DELETE FROM posts WHERE id=%s", (post_id,))
     mysql.connection.commit()
     cur.close()
-    return { success: True }
+    return { "success": True }
+
 
 
 @app.route('/get_posts')
@@ -120,7 +122,7 @@ def get_posts():
         #sanitize content and title
         for post in posts_with_username:
             post['title'] = escape(post['title'])
-            post['content'] = escape(post['content'])
+            post['content'] = markdown.markdown(post['content'])
 
     return {'posts': posts_with_username}
 
