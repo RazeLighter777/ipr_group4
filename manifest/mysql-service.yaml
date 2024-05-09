@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: mysql
+  name: mysql-service
   labels:
     app: baas
 spec:
@@ -116,9 +116,8 @@ data:
     CREATE TABLE IF NOT EXISTS users (
       id INT AUTO_INCREMENT PRIMARY KEY,
       username VARCHAR(255) NOT NULL,
-      password VARCHAR(255) NOT NULL
+      password_hash VARCHAR(255) NOT NULL
     );
-    INSERT INTO users (username, password) VALUES ('admin', 'admin');
     CREATE TABLE IF NOT EXISTS posts (
       id INT AUTO_INCREMENT PRIMARY KEY,
       title VARCHAR(255) NOT NULL,
