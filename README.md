@@ -24,4 +24,3 @@ Used to generate the code for fetching posts from the api using jquery.
 Used as an autocompletion source for the persistentvolume and persistentvolumeclaim yaml sections.
 Also used for the environment variables in the deployment yaml.
 Finally, used to generate the sql queries for the database.
-## How these sources were used
