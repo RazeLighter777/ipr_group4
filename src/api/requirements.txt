@@ -2,3 +2,4 @@ Flask==3.0.3
 Flask-MySQLdb==2.0.0
 Flask-Session==0.8.0
 redis==5.0.4 
+bcrypt==4.1.3 
